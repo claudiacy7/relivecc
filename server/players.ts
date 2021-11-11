@@ -11,6 +11,7 @@ const createPlayerWithCOFKit = createPlayerWithKit("COF");
 const createPlayerWithTFRKit = createPlayerWithKit("TFR");
 
 export const players: Player[] = [
+    createPlayerWithTLJKit("Claudia"),
     createPlayerWithTLJKit("Amin"),
     createPlayerWithTLJKit("Ralf"),
     createPlayerWithTLJKit("Ronald"),
