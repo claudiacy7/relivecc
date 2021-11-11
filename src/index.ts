@@ -21,6 +21,8 @@ async function getPlayersFromServer() {
     return playersWithScore;
 }
 
+
+/*
 function getSamplePlayers() {
     return [
         {
@@ -29,7 +31,7 @@ function getSamplePlayers() {
             startPosition: 1
         }
     ];
-}
+}*/
 
 async function renderToContainer() {
     const root = document.getElementById("root")!;
@@ -38,7 +40,7 @@ async function renderToContainer() {
 
     const stage = new Stage(root, {
         maxPosition: 10000,
-        players: getSamplePlayers()
+        players: await getPlayersFromServer()
     });
 
     stage.moveCamera(0, 0);
