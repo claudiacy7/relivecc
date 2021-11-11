@@ -12,6 +12,7 @@ function createPlayerWithKit(kit : Kit){
     
     return createPlayer;
 }
+
 // Don't modify code below during assignment 1
 // (you can modify this to add yourself to the team)
 const createPlayerWithTLJKit = createPlayerWithKit("TLJ");
