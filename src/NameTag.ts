@@ -36,7 +36,6 @@ export class NameTag extends PureWidget<Props, {}> {
             this.props.position *
                 getPixelWidthBasedOnViewport(PX_PER_POSITION) +
             this.staticProps.startOffsetX;
-
         return ret;
     }
 
