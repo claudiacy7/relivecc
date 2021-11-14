@@ -48,3 +48,17 @@ export const players: Player[] = [
     createPlayerWithTFRKit("Felix"),
     createPlayerWithTFRKit("Niklas")
 ];
+
+/*
+let playerList=players.map((player,index)=>{
+    <div
+        key={i}
+        className="name-container"
+        onClick={() => setNameTag()}>
+        <p>{item.nameTag}</p>
+      </div>
+  })
+
+function renderingFix(){
+    return ({playerList});
+}*/

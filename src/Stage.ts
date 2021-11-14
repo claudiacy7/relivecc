@@ -131,7 +131,7 @@ export default class Stage extends PureWidget<{}, State> {
                 onUpdate: () => {
                     // Called after TweenMax updates 'position'.
                     const newBikePositions = [...this.state.bikePositions];
-                    newBikePositions[bikeIndex] = Math.trunc(data.position); //removing any numbers after a decimal point
+                    newBikePositions[bikeIndex] = Math.trunc(data.position); //removing any numbers after a decimal point when debugging on browser found 
                     this.setState({
                         bikePositions: newBikePositions
                     });

@@ -6,8 +6,6 @@ import { Kit } from "../shared/sharedModels";
 
 type Props = {
     position: number;
-    onClick: (nameTag: NameTag) => void;
-    getFreePosition: (nameTag: NameTag, desiredPosition: Box) => Point;
 };
 
 export class NameTag extends PureWidget<Props, {}> {
@@ -19,6 +17,8 @@ export class NameTag extends PureWidget<Props, {}> {
             name: string;
             kit: Kit;
             startOffsetX: number;
+            onClick: (nameTag: NameTag) => void;
+            getFreePosition: (nameTag: NameTag, desiredPosition: Box) => Point;
         }
     ) {
         super({});
@@ -26,7 +26,7 @@ export class NameTag extends PureWidget<Props, {}> {
         this.element.className = `name ${this.staticProps.kit}`;
         this.element.innerText = this.staticProps.name;
         this.element.addEventListener("click", () => {
-            this.props.onClick(this);
+            this.staticProps.onClick(this); 
         });
         container.appendChild(this.element);
     }
@@ -56,7 +56,7 @@ export class NameTag extends PureWidget<Props, {}> {
             height: this.element.offsetHeight + margin
         };
 
-        const pos = this.props.getFreePosition(this, desiredPosition);
+        const pos = this.staticProps.getFreePosition(this, desiredPosition); //this now renders 10 times instead of 300+ and with only the name that was selected not all of them.
         this.element.style.transform = this.element.style.webkitTransform = `translate(${pos.x}px, ${pos.y}px)`;
 
         this.box = {
