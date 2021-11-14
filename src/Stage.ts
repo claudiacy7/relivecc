@@ -69,7 +69,29 @@ export default class Stage extends PureWidget<{}, State> {
             this.nameTags.push(
                 new NameTag(this.nameContainer, {
                     ...player,
-                    startOffsetX: STAGE_LEFT_EXTRA + window.outerWidth / 2
+                    startOffsetX: STAGE_LEFT_EXTRA + window.outerWidth / 2,
+                    onClick: (nameTag: NameTag) => {
+                        this.tweenBikePosition(i, this.state.bikePositions[i] + 5);
+                    },
+                    getFreePosition: (nameTag: NameTag, desiredPosition: Box) => {
+                        const otherBoxes = this.nameTags
+                            .filter(tag => tag != nameTag)
+                            .map(tag => tag.getBox())
+                            .filter<Box>((box): box is Box => !!box);
+    
+                        const containerBox = {
+                            x: 0,
+                            y: 0,
+                            width: this.nameContainer.offsetWidth,
+                            height: this.nameContainer.offsetHeight
+                        };
+    
+                        return getClosestFreePosition(
+                            containerBox,
+                            desiredPosition,
+                            otherBoxes
+                        );
+                    }
                 })
             );
         });
@@ -109,11 +131,11 @@ export default class Stage extends PureWidget<{}, State> {
                 onUpdate: () => {
                     // Called after TweenMax updates 'position'.
                     const newBikePositions = [...this.state.bikePositions];
-                    newBikePositions[bikeIndex] = data.position;
+                    newBikePositions[bikeIndex] = Math.trunc(data.position); //removing any numbers after a decimal point
                     this.setState({
                         bikePositions: newBikePositions
                     });
-                }
+                } 
             }
         );
     }
@@ -124,31 +146,7 @@ export default class Stage extends PureWidget<{}, State> {
         });
 
         this.nameTags.forEach((nameTag, i) => {
-            nameTag.renderWithProps({
-                position: this.state.bikePositions[i],
-                onClick: (nameTag: NameTag) => {
-                    this.tweenBikePosition(i, this.state.bikePositions[i] + 5);
-                },
-                getFreePosition: (nameTag: NameTag, desiredPosition: Box) => {
-                    const otherBoxes = this.nameTags
-                        .filter(tag => tag != nameTag)
-                        .map(tag => tag.getBox())
-                        .filter<Box>((box): box is Box => !!box);
-
-                    const containerBox = {
-                        x: 0,
-                        y: 0,
-                        width: this.nameContainer.offsetWidth,
-                        height: this.nameContainer.offsetHeight
-                    };
-
-                    return getClosestFreePosition(
-                        containerBox,
-                        desiredPosition,
-                        otherBoxes
-                    );
-                }
-            });
+            nameTag.renderWithProps({ position: this.state.bikePositions[i] });
         });
     }
 }
