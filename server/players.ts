@@ -1,5 +1,18 @@
 import { Kit, Player } from "../shared/sharedModels";
 
+function createPlayerWithKit(kit : Kit){
+
+    const createPlayer = (name : string) => {
+        let player : Player = {
+        name : name,
+        kit : kit
+    }
+        return player;
+    }
+    
+    return createPlayer;
+}
+
 // Don't modify code below during assignment 1
 // (you can modify this to add yourself to the team)
 const createPlayerWithTLJKit = createPlayerWithKit("TLJ");
@@ -35,3 +48,17 @@ export const players: Player[] = [
     createPlayerWithTFRKit("Felix"),
     createPlayerWithTFRKit("Niklas")
 ];
+
+/*
+let playerList=players.map((player,index)=>{
+    <div
+        key={i}
+        className="name-container"
+        onClick={() => setNameTag()}>
+        <p>{item.nameTag}</p>
+      </div>
+  })
+
+function renderingFix(){
+    return ({playerList});
+}*/

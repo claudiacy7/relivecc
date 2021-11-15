@@ -3,6 +3,7 @@ import { getPixelWidthBasedOnViewport } from "./util/math";
 import { PX_PER_POSITION } from "./constants";
 import PureWidget from "./widget/PureWidget";
 import { Kit } from "../shared/sharedModels";
+//import { players } from "server/players";
 
 type Props = {
     position: number;
@@ -56,10 +57,10 @@ export class Bike extends PureWidget<Props, {}> {
         // TODO: bug here
         this.element.style.top =
             "calc(26% + " +
-            staticProps.row * getPixelWidthBasedOnViewport(35) +
+            staticProps.row + getPixelWidthBasedOnViewport(35) +
             "px)";
 
-        // TweenMax.set(this.element, { x: this.getXForPosition() + "px" });
+         //TweenMax.set(this.element, { x: this.getXForPosition() + "px" });
 
         TweenMax.fromTo(this.element, 2, { opacity: 0 }, { opacity: 1 });
     }
@@ -78,4 +79,11 @@ export class Bike extends PureWidget<Props, {}> {
         const x = this.getXForPosition();
         this.element.style.transform = `translate(${x}px,0px)`;
     }
+/*
+    renderBikeToContainer() {
+        const bike = document.getElementsByClassName("bike")!;
+    
+        //bike.renderWithProps({}); // initial render
+        console.log("render Bike", this.staticProps.name);
+    }    */
 }
