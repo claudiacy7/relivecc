@@ -3,7 +3,8 @@ import Stage from "./Stage";
 import axios from "axios";
 import { Player, Kit } from "../shared/sharedModels";
 
-//this also needs to have a storage location to temporary collect the data as this now restarts the bikes movement from the start whenever the caching is reset
+//this also needs to have a storage location in an external json file for example to temporary collect the data 
+//as this now restarts the bikes movement from the start whenever the caching is reset
 type Cache =
 {
     result: {
